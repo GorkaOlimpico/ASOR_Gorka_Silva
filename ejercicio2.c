@@ -11,5 +11,5 @@ int main() {
       error = strerror(errno);
       printf("Codigo numerico: %d, Codigo cadena: %s", errno, error);
    }
-   return 1;
+   return 0;
 }
