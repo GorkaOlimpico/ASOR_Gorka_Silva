@@ -9,5 +9,5 @@ int main() {
    if(setuid(0)== -1){
       error = strerror(errno);
    }
-   return 1;
+   return 0;
 }
