@@ -8,10 +8,7 @@
 
 int main(int argc, char **argv) {
 
-   char *HOME = getenv("HOME");
-   char *tuberia = strcat(HOME, "/tuberia");
-
-   printf("HOME: %s\n", tuberia);
+   char *tuberia = "tuberia";
 
    mkfifo(tuberia, 0777);
    int fd = open(tuberia, O_WRONLY);
