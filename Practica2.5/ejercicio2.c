@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
       return -1;
    }
 
-   int socketUDP = socket(resultado->ai_family, resultado->ai_socktype, resulta$
+   int socketUDP = socket(resultado->ai_family, resultado->ai_socktype, resultado->ai_protocol);
 
    if (bind(socketUDP, resultado->ai_addr, resultado->ai_addrlen) != 0) {
      printf("Error al ejecutar el bind.");
@@ -50,10 +50,10 @@ int main(int argc, char **argv) {
    socklen_t client_addrlen = sizeof(client_addr);
 
    while(1){
-      ssize_t bytes = recvfrom(socketUDP, buf, 2, 0, (struct sockaddr *) &clien$
+      ssize_t bytes = recvfrom(socketUDP, buf, 2, 0, (struct sockaddr *) &client_adrr, &client_addrlen);
       buf[1] = '\0';
 
-      getnameinfo((struct sockaddr *) &client_addr, client_addrlen, host, NI_MA$
+      getnameinfo((struct sockaddr *) &client_addr, client_addrlen, host, NI_MAXHOST, serv, NI_MAXSERV, NI_NUMERICHOST|NI_NUMERICSERV);
 
       printf("%i byte(s) de %s:%s\n", bytes, host, serv);
 
@@ -65,12 +65,12 @@ int main(int argc, char **argv) {
       if (buf[0] == 't'){
          size_t bytesT = strftime(s, max, "%I:%M:%S %p", tm);
          s[bytesT] = '\0';
-         sendto(socketUDP, s, bytesT, 0, (struct sockaddr *) &client_addr, clie$
+         sendto(socketUDP, s, bytesT, 0, (struct sockaddr *) &client_addr, client_addrlen);
       }
       else if (buf[0] == 'd'){
          size_t bytesT = strftime(s, max, "%Y-%m-%d", tm);
          s[bytesT] = '\0';
-         sendto(socketUDP, s, bytesT, 0, (struct sockaddr *) &client_addr, clie$
+         sendto(socketUDP, s, bytesT, 0, (struct sockaddr *) &client_addr, client_addrlen);
       }
       else if (buf[0] == 'q'){
          printf("Saliendo...\n");
