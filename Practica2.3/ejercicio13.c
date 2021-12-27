@@ -11,14 +11,14 @@ void hler(int senial){
 }
 
 int main(int argc, char **argv) {
-	if (argc != 2) {
+  if (argc != 2) {
     printf("ERROR: Introduce los segundos!\n");
     return -1;
   }
 
   sigset_t mask;
   sigemptyset(&mask);
-	sigaddset(&mask, SIGUSR1);
+  sigaddset(&mask, SIGUSR1);
   sigprocmask(SIG_UNBLOCK, &mask, NULL);
 
   struct sigaction act;
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   int secs = atoi(argv[1]);
 
   int i = 0;
-	while (i < secs && stop == 0) {
+  while (i < secs && stop == 0) {
     i++;
     sleep(1);
   }
