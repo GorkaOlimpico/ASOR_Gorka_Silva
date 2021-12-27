@@ -21,7 +21,7 @@ int main(int argc, char **argv){
    int totalsize = 0;
 
    while(mi_read != NULL){
-      char *path = malloc(sizeof(char)*(strlen(argv[1]) + strlen(mi_read->d_nam$
+      char *path = malloc(sizeof(char)*(strlen(argv[1]) + strlen(mi_read->d_name) + 3));
       strcpy(path, argv[1]);
       strcat(path, "/");
       strcat(path, mi_read->d_name);
